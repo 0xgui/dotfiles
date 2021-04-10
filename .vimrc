@@ -1,37 +1,11 @@
-syntax on
-set rnu
-set number
-set hlsearch
-set history=1000
-set so=7
-set wildmenu
-set ruler
-set smartcase
-set incsearch
-set showmatch
-set noerrorbells
-set noswapfile
-set expandtab
-set smarttab
-set shiftwidth=4
-set tabstop=4
-set ai
-set si
-highlight Comment ctermfg=green
+set runtimepath+=~/.vim_runtime
 
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
-" Function: display errors from Ale in statusline
-set laststatus=2
-set statusline+=\ ‹‹
-set statusline+=\ %f\ %*
-set statusline+=\ ››
-set statusline+=\ %m
-set statusline+=%#keyword#\ %F
-set statusline+=%=
+source ~/.vim_runtime/vimrcs/basic.vim
+source ~/.vim_runtime/vimrcs/filetypes.vim
+source ~/.vim_runtime/vimrcs/plugins_config.vim
+source ~/.vim_runtime/vimrcs/extended.vim
 
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
+try
+source ~/.vim_runtime/my_configs.vim
+catch
+endtry
