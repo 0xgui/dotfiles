@@ -1,5 +1,7 @@
 # dotfiles
 
+Trying to create a quick setup for a new PC.
+
 Simple dotfiles for:
 - vim
 - tmux
