@@ -1,6 +1,9 @@
 # dotfiles
 
-Trying to create a quick setup for a new PC.
+Trying to create a quick setup config.
+
+TODO:
+- Big boy script
 
 Simple dotfiles for:
 - vim
