@@ -14,4 +14,29 @@ Simple dotfiles for:
 
 Messing around with [The Ultimate Vim configuration](https://github.com/amix/vimrc)
 
-More stuff coming soon...
+---
+
+## Shortcuts
+
+### Vim
+* leader - , 
+
+Comment lines - gcc
+
+Enter/exit pastemod - ,pp 
+
+### Tmux
+* Meta - Alt
+* Ctrl B - Default  --> cb
+
+Change layout - cb + space
+
+Rename window - cb + ,
+
+New window - cb + c
+
+Manual resize - cb + hold ctrl and move with arrows
+
+
+### Shell
+* TBD
