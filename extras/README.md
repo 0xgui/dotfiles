@@ -4,7 +4,7 @@
 - Copy script to ~/.config
 - Copy mdadm.conf to /etc/mdadm.conf for the pop up notifications for the RAID array
 - Don't forget to change UUID and location of script
-
+- Test notification using mdadm --monitor --test --scan
 
 ## NUT:
     ```
