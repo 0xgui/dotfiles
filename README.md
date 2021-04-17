@@ -21,10 +21,11 @@ Messing around with [The Ultimate Vim configuration](https://github.com/amix/vim
 ## Shortcuts
 
 ### Vim
-* leader - , 
+- leader key - , 
 
-Save as sudo if you forgot to open with sudo :SudaWrite
-Comment lines - gcc
+- Save as sudo if you forgot to open with sudo :SudaWrite
+
+- Comment lines - gcc
 
 Enter/exit pastemod - ,pp 
 
