@@ -10,7 +10,9 @@ Simple dotfiles for:
 - tmux
 - bashrc
 - zshrc
-- scripts
+- extras
+- xfce 
+
 
 Messing around with [The Ultimate Vim configuration](https://github.com/amix/vimrc)
 
