@@ -1,7 +1,9 @@
 # Notes:
 
 ## MDADM:
-- Add PROGRAM at /etc/mdadm.conf for the pop up notifications for the RAID array
+- Copy script to ~/.config
+- Copy mdadm.conf to /etc/mdadm.conf for the pop up notifications for the RAID array
+- Don't forget to change UUID and location of script
 
 
 ## NUT:
@@ -18,4 +20,4 @@
 -   reboot
     ```
 
- -   Then, visit your stats page at http://your_IP/nut 
+ -   Then, visit your stats page at http://your_IP:8080/nut 
