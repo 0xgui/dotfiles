@@ -6,7 +6,7 @@ TODO:
 - Big boy script
 
 Simple dotfiles for:
-- vim
+- nvim/vim
 - tmux
 - bashrc
 - zshrc
