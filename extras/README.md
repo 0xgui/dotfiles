@@ -7,17 +7,15 @@
 - Test notification using mdadm --monitor --test --scan
 
 ## NUT:
-    ```
--   sudo apt-get update && sudo apt-get install nut nut-cgi fcgiwrap nginx
-    ```
-
+```
+   sudo apt-get update && sudo apt-get install nut nut-cgi fcgiwrap nginx
+```
 -   Copy the nginx folder to the NGINX configuration to /etc/nginx/
 
 -   Copy the nut folder to the NUT config to /etc/nut
 
-    ```
--   sudo chown www-data:www-data /usr/lib/cgi-bin/nut/*.cgi
--   reboot
-    ```
-
- -   Then, visit your stats page at http://your_IP:8080/nut 
+```
+   sudo chown www-data:www-data /usr/lib/cgi-bin/nut/*.cgi
+   reboot
+```
+-   Stats page at http://your_IP:8080/nut 
