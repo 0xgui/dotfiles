@@ -4,6 +4,9 @@ Trying to create a quick setup config.
 
 TODO:
 - Big boy script
+- krew
+- alias
+
 
 Simple dotfiles for:
 - nvim/vim
