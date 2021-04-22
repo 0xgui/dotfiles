@@ -15,7 +15,7 @@ Simple dotfiles for:
 - zshrc
 - extras
 - xfce 
-
+- fzf
 
 Messing around with [The Ultimate Vim configuration](https://github.com/amix/vimrc)
 
