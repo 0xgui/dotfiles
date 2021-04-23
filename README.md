@@ -8,6 +8,7 @@ TODO:
 - alias
 
 
+
 Simple dotfiles for:
 - nvim/vim
 - tmux
