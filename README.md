@@ -6,7 +6,7 @@ TODO:
 - Big boy script
 - krew
 - alias
-
+- add YAML and JSON syntax to vim
 
 
 Simple dotfiles for:
