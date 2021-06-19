@@ -11,6 +11,7 @@
         "custom/separator",
         "custom/vpn",
         "network",
+	"custom/teste",
         "custom/separator",
         "memory",
         "custom/separator",
@@ -112,7 +113,11 @@
         "format-disconnected": "⚠  Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}"
     },
-
+    "custom/teste": {
+        "interval": 5,
+        "format-ethernet": "{ipaddr}/{cidr}", // Icon: ethernet
+        "tooltip-format": "{ipaddr}"
+    },
     "custom/vpn":{
         "format": " {icon}",
         "tooltip-format": "{icon}",
@@ -144,13 +149,13 @@
         "disable-scroll": true,
         "format": "{icon}",
         "format-icons": {
-            "1.terminals": "",
-            "2.www": "",
-            "3.chat": "",
-            "4.notes": "",
-            "5.mail": "",
-            "6.spotify": "",
-            "7.vms": "Vms",
+            "1.terminals": "1-",
+            "2.www": "2-",
+            "3.chat": "3-",
+            "4.notes": "4-",
+            "5.mail": "5-",
+            "6.spotify": "6-",
+            "7.vms": "7-Vms",
             "urgent": "",
             "focused": "",
             "default": ""
