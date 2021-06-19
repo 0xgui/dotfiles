@@ -84,12 +84,15 @@ mkdir -p ~/.config/sway
 mkdir -p ~/.config/waybar
 mkdir -p ~/.config/alacritty
 mkdir -p ~/.config/wofi
+mkdir -p ~/.local/bin
 
 echo "cp dotfiles" 
 cp .config/sway/config ~/.config/sway/config
 cp .config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 cp .config/waybar/config ~/.config/waybar/config
 cp .config/wofi/config ~/.config/wofi/config
+cp scripts/spotify.py ~/.local/bin
+chmod +x ~/.local/bin/spotify.py
 
 echo "Install Finished. Please Reboot and select swaywm".
 
