@@ -41,7 +41,7 @@ flatpak install -y  flathub com.spotify.Client \
 	com.github.PintaProject.Pinta \
 	com.github.wwmm.pulseeffects
 
-# wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
 echo "Install OhMyZSH"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -62,7 +62,7 @@ sudo dnf -y install code
 
 echo "Install VirtualBox"
 sudo dnf install -y VirtualBox kernel-devel-$(uname -r) akmod-VirtualBox
-akmods
+sudo akmods
 
 echo "Create Folders" 
 mkdir -p ~/temp ~/scripts ~/repos ~/projects ~/apps
@@ -77,6 +77,7 @@ then
 	cd
 else
 	echo "NerdFonts already installed"
+fi
 
 echo "Mkdir dotfiles folders" 
 mkdir -p ~/.config/sway
