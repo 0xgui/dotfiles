@@ -34,7 +34,9 @@ sudo dnf -y install sway \
 	vlc  \
 	mpv \
 	chromium \
-	thunderbird
+	thunderbird \
+	wdisplays \
+	playerctl
 
 flatpak install -y  flathub com.spotify.Client \
 	com.discordapp.Discord \

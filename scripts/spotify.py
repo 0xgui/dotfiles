@@ -1,128 +1,127 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-import sys
-import dbus
+#!/usr/bin/env python3
 import argparse
+import logging
+import sys
+import signal
+import gi
+import json
+gi.require_version('Playerctl', '2.0')
+from gi.repository import Playerctl, GLib
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-t", "--trunclen", type=int, metavar="trunclen")
-parser.add_argument(
-    "-f", "--format", type=str, metavar="custom format", dest="custom_format"
-)
-parser.add_argument(
-    "-p", "--playpause", type=str, metavar="play-pause indicator", dest="play_pause"
-)
-parser.add_argument(
-    "--font",
-    type=str,
-    metavar="the index of the font to use for the main label",
-    dest="font",
-)
-parser.add_argument(
-    "--playpause-font",
-    type=str,
-    metavar="the index of the font to use to display the playpause indicator",
-    dest="play_pause_font",
-)
-parser.add_argument(
-    "-q",
-    "--quiet",
-    action="store_true",
-    help="if set, don't show any output when the current song is paused",
-    dest="quiet",
-)
-
-args = parser.parse_args()
+logger = logging.getLogger(__name__)
 
 
-def fix_string(string):
-    # corrects encoding for the python version used
-    if sys.version_info.major == 3:
-        return string
+def write_output(text, player):
+    logger.info('Writing output')
+
+    output = {'text': text,
+              'class': 'custom-' + player.props.player_name,
+              'alt': player.props.player_name}
+
+    sys.stdout.write(json.dumps(output) + '\n')
+    sys.stdout.flush()
+
+
+def on_play(player, status, manager):
+    logger.info('Received new playback status')
+    on_metadata(player, player.props.metadata, manager)
+
+
+def on_metadata(player, metadata, manager):
+    logger.info('Received new metadata')
+    track_info = ''
+
+    if player.props.player_name == 'spotify' and \
+            'mpris:trackid' in metadata.keys() and \
+            ':ad:' in player.props.metadata['mpris:trackid']:
+        track_info = 'AD PLAYING'
+    elif player.get_artist() != '' and player.get_title() != '':
+        track_info = '{artist} - {title}'.format(artist=player.get_artist(),
+                                                 title=player.get_title())
     else:
-        return string.encode("utf-8")
+        track_info = player.get_title()
+
+    if player.props.status != 'Playing' and track_info:
+        track_info = ' ' + track_info
+    write_output(track_info, player)
 
 
-def truncate(name, trunclen):
-    if len(name) > trunclen:
-        name = name[:trunclen]
-        name += "..."
-        if ("(" in name) and (")" not in name):
-            name += ")"
-    return name
-
-
-# Default parameters
-output = fix_string(u"{play_pause} {artist}: {song}")
-trunclen = 35
-play_pause = fix_string(u"\uF909,\uF8E3")  # first character is play, second is paused
-
-label_with_font = "%{{T{font}}}{label}%{{T-}}"
-font = args.font
-play_pause_font = args.play_pause_font
-
-quiet = args.quiet
-
-# parameters can be overwritten by args
-if args.trunclen is not None:
-    trunclen = args.trunclen
-if args.custom_format is not None:
-    output = args.custom_format
-if args.play_pause is not None:
-    play_pause = args.play_pause
-
-try:
-    session_bus = dbus.SessionBus()
-    spotify_bus = session_bus.get_object(
-        "org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2"
-    )
-
-    spotify_properties = dbus.Interface(spotify_bus, "org.freedesktop.DBus.Properties")
-
-    metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
-    status = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "PlaybackStatus")
-
-    # Handle play/pause label
-
-    play_pause = play_pause.split(",")
-
-    if status == "Playing":
-        play_pause = play_pause[0]
-    elif status == "Paused":
-        play_pause = play_pause[1]
+def on_player_appeared(manager, player, selected_player=None):
+    if player is not None and (selected_player is None or player.name == selected_player):
+        init_player(manager, player)
     else:
-        play_pause = str()
+        logger.debug("New player appeared, but it's not the selected player, skipping")
 
-    if play_pause_font:
-        play_pause = label_with_font.format(font=play_pause_font, label=play_pause)
 
-    # Handle main label
+def on_player_vanished(manager, player):
+    logger.info('Player has vanished')
+    sys.stdout.write('\n')
+    sys.stdout.flush()
 
-    artist = fix_string(metadata["xesam:artist"][0]) if metadata["xesam:artist"] else ""
-    song = fix_string(metadata["xesam:title"]) if metadata["xesam:title"] else ""
-    album = fix_string(metadata["xesam:album"]) if metadata["xesam:album"] else ""
 
-    if (quiet and status == "Paused") or (not artist and not song and not album):
-        print("")
-    else:
-        if font:
-            artist = label_with_font.format(font=font, label=artist)
-            song = label_with_font.format(font=font, label=song)
-            album = label_with_font.format(font=font, label=album)
+def init_player(manager, name):
+    logger.debug('Initialize player: {player}'.format(player=name.name))
+    player = Playerctl.Player.new_from_name(name)
+    player.connect('playback-status', on_play, manager)
+    player.connect('metadata', on_metadata, manager)
+    manager.manage_player(player)
+    on_metadata(player, player.props.metadata, manager)
 
-        # Add 4 to trunclen to account for status symbol, spaces, and other padding characters
-        print(
-            truncate(
-                output.format(
-                    artist=artist, song=song, play_pause=play_pause, album=album
-                ),
-                trunclen + 4,
-            )
-        )
 
-except Exception as e:
-    if isinstance(e, dbus.exceptions.DBusException):
-        print("")
-    else:
-        print(e)
+def signal_handler(sig, frame):
+    logger.debug('Received signal to stop, exiting')
+    sys.stdout.write('\n')
+    sys.stdout.flush()
+    # loop.quit()
+    sys.exit(0)
+
+
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+
+    # Increase verbosity with every occurence of -v
+    parser.add_argument('-v', '--verbose', action='count', default=0)
+
+    # Define for which player we're listening
+    parser.add_argument('--player')
+
+    return parser.parse_args()
+
+
+def main():
+    arguments = parse_arguments()
+
+    # Initialize logging
+    logging.basicConfig(stream=sys.stderr, level=logging.DEBUG,
+                        format='%(name)s %(levelname)s %(message)s')
+
+    # Logging is set by default to WARN and higher.
+    # With every occurrence of -v it's lowered by one
+    logger.setLevel(max((3 - arguments.verbose) * 10, 0))
+
+    # Log the sent command line arguments
+    logger.debug('Arguments received {}'.format(vars(arguments)))
+
+    manager = Playerctl.PlayerManager()
+    loop = GLib.MainLoop()
+
+    manager.connect('name-appeared', lambda *args: on_player_appeared(*args, arguments.player))
+    manager.connect('player-vanished', on_player_vanished)
+
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
+
+    for player in manager.props.player_names:
+        if arguments.player is not None and arguments.player != player.name:
+            logger.debug('{player} is not the filtered player, skipping it'
+                         .format(player=player.name)
+                         )
+            continue
+
+        init_player(manager, player)
+
+    loop.run()
+
+
+if __name__ == '__main__':
+    main()
