@@ -1,4 +1,5 @@
 #! /bin/bash
+# Setup for a new Fedora Machine
 echo "Set Hostname"
 hostnamectl set-hostname linux
 
