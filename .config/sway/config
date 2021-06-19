@@ -30,21 +30,7 @@ set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
 #output eDP-1 scale 1.0 scale_filter nearest
 
 # set custom swaylock command (swaylock-effects)
-set $lock swaylock --screenshots \
-      --clock \
-      --indicator \
-      --indicator-radius 100 \
-      --indicator-thickness 7 \
-      --effect-blur 7x5 \
-      --effect-vignette 0.5:0.5 \
-      --ring-color 39373b \
-      --key-hl-color 880033 \
-      --line-color 00000000 \
-      --inside-color 00000088 \
-      --separator-color 00000000 \
-      --grace 3 \
-      --fade-in 0.5 \
-      --effect-greyscale
+set $lock swaylock -c 000000 --indicator-idle-visible
 
 ### Idle configuration
 exec swayidle -w \
