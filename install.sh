@@ -46,9 +46,8 @@ wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_
 echo "Install OhMyZSH"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-
 echo "Make zsh default shell"
-chsh $(which zsh)
+sudo usermod -s /usr/bin/zsh $USER
 
 echo "Create alias"
 # nvim bat lsd
@@ -63,6 +62,15 @@ sudo dnf -y install code
 echo "Install VirtualBox"
 sudo dnf install -y VirtualBox kernel-devel-$(uname -r) akmod-VirtualBox
 sudo akmods
+
+echo "Install VPN"
+if  ls | grep -q -i mullvad 
+then
+	sudo dnf install -y ./MullvadVPN*
+else 
+	wget --content-disposition https://mullvad.net/download/app/rpm/latest
+	sudo dnf install -y ./MullvadVPN*
+fi
 
 echo "Create Folders" 
 mkdir -p ~/temp ~/scripts ~/repos ~/projects ~/apps
