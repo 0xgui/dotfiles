@@ -113,21 +113,21 @@
         "tooltip-format": "{ifname}: {ipaddr}"
     },
 
-#    "custom/vpn":{
-#        "format": " {icon}",
-#        "tooltip-format": "{icon}",
-#        "exec": "$HOME/.local/bin/vpn_echo.sh",
-#        "return-type": "json",
-#        "interval": 5,
-#        "format-icons": ["",""]
-#    },
+    "custom/vpn":{
+        "format": " {icon}",
+        "tooltip-format": "{icon}",
+        "exec": "$HOME/.local/bin/vpn_echo.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format-icons": ["",""]
+    },
 
-#    "custom/spotify": {
-#        "format": " {}",
-#        "interval": 3,
-#        "exec": "$HOME/.local/bin/spotify.py",
-#        "exec-if": "pgrep spotify"
-#    },
+    "custom/spotify": {
+        "format": " {}",
+        "interval": 3,
+        "exec": "$HOME/.local/bin/spotify.py",
+        "exec-if": "pgrep spotify"
+    },
 
     "sway/mode": {
         "format": "<span style=\"italic\">  {}</span>", // Icon: expand-arrows-alt

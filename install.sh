@@ -69,15 +69,12 @@ mkdir -p ~/temp ~/scripts ~/repos ~/projects ~/apps
 
 echo "Install NerdFonts" 
 
-if [ ! -d ~/temp/nerd-fonts]
-then
-	git clone https://github.com/ryanoasis/nerd-fonts.git temp/
-	cd ~/temp/nerd-fonts
-	./install.sh
-	cd
-else
-	echo "NerdFonts already installed"
-fi
+[ ! -d "~/temp/nerd-fonts" ] && \
+	git clone https://github.com/ryanoasis/nerd-fonts.git ~/temp/nerd-fonts && \
+	cd ~/temp/nerd-fonts && \
+	./install.sh && \
+	cd dotfiles/
+
 
 echo "Mkdir dotfiles folders" 
 mkdir -p ~/.config/sway
@@ -90,8 +87,10 @@ echo "cp dotfiles"
 cp .config/sway/config ~/.config/sway/config
 cp .config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 cp .config/waybar/config ~/.config/waybar/config
+cp .config/waybar/style.css ~/.config/waybar/style.css
 cp .config/wofi/config ~/.config/wofi/config
 cp scripts/spotify.py ~/.local/bin
+
 chmod +x ~/.local/bin/spotify.py
 
 echo "Install Finished. Please Reboot and select swaywm".
