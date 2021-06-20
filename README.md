@@ -1,5 +1,5 @@
 # dotfiles ?
-
+![alt text](dotfiles.jpg)
 TODO:
 - krew
 - alias

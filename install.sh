@@ -84,6 +84,7 @@ echo "Install NerdFonts"
 	git clone https://github.com/ryanoasis/nerd-fonts.git ~/temp/nerd-fonts && \
 	cd ~/temp/nerd-fonts && \
 	./install.sh && \
+	cd && \
 	cd dotfiles/
 
 
