@@ -3,7 +3,7 @@
 echo "Set Hostname"
 hostnamectl set-hostname linux
 
-echo "Enable RPMFusion" 
+echo "Enable RPMFusion"
 sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 echo "Install Flatpak"
@@ -67,18 +67,18 @@ sudo dnf install -y VirtualBox kernel-devel-$(uname -r) akmod-VirtualBox
 sudo akmods
 
 echo "Install VPN"
-if  ls | grep -q -i mullvad 
+if  ls | grep -q -i mullvad
 then
 	sudo dnf install -y ./MullvadVPN*
-else 
+else
 	wget --content-disposition https://mullvad.net/download/app/rpm/latest
 	sudo dnf install -y ./MullvadVPN*
 fi
 
-echo "Create Folders" 
+echo "Create Folders"
 mkdir -p ~/temp ~/scripts ~/repos ~/projects ~/apps
 
-echo "Install NerdFonts" 
+echo "Install NerdFonts"
 
 [ ! -d "~/temp/nerd-fonts" ] && \
 	git clone https://github.com/ryanoasis/nerd-fonts.git ~/temp/nerd-fonts && \
@@ -87,20 +87,24 @@ echo "Install NerdFonts"
 	cd dotfiles/
 
 
-echo "Mkdir dotfiles folders" 
+echo "Mkdir dotfiles folders"
 mkdir -p ~/.config/sway
 mkdir -p ~/.config/waybar
 mkdir -p ~/.config/alacritty
 mkdir -p ~/.config/wofi
 mkdir -p ~/.local/bin
+mkdir -p ~/.local/share/nvim/backup
+mkdir -p ~/.config/nvim
 
-echo "cp dotfiles" 
+echo "cp dotfiles"
 cp .config/sway/config ~/.config/sway/config
 cp .config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 cp .config/waybar/config ~/.config/waybar/config
 cp .config/waybar/style.css ~/.config/waybar/style.css
 cp .config/wofi/config ~/.config/wofi/config
 cp scripts/spotify.py ~/.local/bin
+cp .config/tmux/.tmux.conf ~/
+cp .config/nvim/init.vim ~/.config/nvim/init.vim
 
 chmod +x ~/.local/bin/spotify.py
 

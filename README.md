@@ -1,37 +1,25 @@
-# dotfiles
-
-Trying to create a quick setup config.
+# dotfiles ?
 
 TODO:
-- Big boy script
 - krew
 - alias
-- add YAML and JSON syntax to vim
-
 
 Simple dotfiles for:
-- nvim/vim
+- nvim
 - tmux
 - bashrc
 - zshrc
 - extras
-- xfce 
-- fzf
-
-Messing around with [The Ultimate Vim configuration](https://github.com/amix/vimrc)
 
 ---
-
 ## Shortcuts
-
 ### Vim
-- leader key - , 
 
-- Save as sudo if you forgot to open with sudo :SudaWrite
-
-- Comment lines - gcc
-
-Enter/exit pastemod - ,pp 
+- zo - open single fold
+- zR - open all folds
+- zc - close single fold
+- zM - close all folds
+- ctrl+v + shift I + wtv + ESC - Multi cursor write
 
 ### Tmux
 * Meta - Alt
@@ -44,7 +32,3 @@ Rename window - cb + ,
 New window - cb + c
 
 Manual resize - cb + hold ctrl and move with arrows
-
-
-### Shell
-* TBD
