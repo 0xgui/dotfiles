@@ -52,9 +52,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 echo "Make zsh default shell"
 sudo usermod -s /usr/bin/zsh $USER
 
-echo "Create alias"
-# nvim bat lsd
-
 echo "Install VSCODE"
 
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
