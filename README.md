@@ -3,6 +3,7 @@
 TODO:
 - krew
 - alias
+- install excluding DE
 
 Simple dotfiles for:
 - nvim
