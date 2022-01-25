@@ -13,12 +13,12 @@ set autoread " Set to auto read when a file is changed from the outside
 set backspace=indent,eol,start
 set cursorline " Highlight current line
 set expandtab " Expand tabs to spaces
-set foldcolumn=0 " Column to show folds
-set foldenable " Enable folding
-set foldlevel=0 " Close all folds by default
-set foldmethod=syntax " Syntax are used to specify folds
-set foldminlines=0 " Allow folding single lines
-set foldnestmax=5 " Set max fold nesting level
+" set foldcolumn=0 " Column to show folds
+" set foldenable " Enable folding
+" set foldlevel=0 " Close all folds by default
+" set foldmethod=syntax " Syntax are used to specify folds
+" set foldminlines=0 " Allow folding single lines
+" set foldnestmax=5 " Set max fold nesting level
 set formatoptions=
 set formatoptions+=c " Format comments
 set formatoptions+=r " Continue comments by default
@@ -78,15 +78,25 @@ set wildmode=list:longest " Complete only until point of ambiguity
 set winminheight=0 " Allow splits to be reduced to a single line
 set wrapscan " Searches wrap around end of file
 
+
+
+set clipboard=unnamedplus 
+
+
 " Plugin.
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'dikiaap/minimalist'
+Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/vim-plug'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-syntastic/syntastic'
+Plug 'jiangmiao/auto-pairs'
+" Git
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 " Colors, Fonts, and Syntax.
@@ -103,7 +113,7 @@ set directory=~/.local/share/nvim/swap
 set undodir=~/.local/share/nvim/undo
 
 " Airline.
-let g:airline_theme='minimalist'
+let g:airline_theme='dark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -115,6 +125,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
+let NERDTreeShowHidden=1
 
 " Syntastic.
 set statusline+=%#warningmsg#
