@@ -80,7 +80,7 @@ set wrapscan " Searches wrap around end of file
 
 
 
-set clipboard=unnamedplus 
+set clipboard=unnamedplus
 
 
 " Plugin.
