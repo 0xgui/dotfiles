@@ -3,7 +3,6 @@
 TODO:
 - krew
 - alias
-- install excluding DE
 
 Simple dotfiles for:
 - nvim
@@ -33,3 +32,7 @@ Rename window - cb + ,
 New window - cb + c
 
 Manual resize - cb + hold ctrl and move with arrows
+
+### Branches
+
+simple: gnome compatible installation
