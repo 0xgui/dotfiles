@@ -21,16 +21,16 @@ sudo dnf -y install  \
 	mpv \
 	thunderbird \
 	neovim \
+  kitty \
 
 echo "Create Folders"
-mkdir -p ~/temp ~/scripts ~/repos ~/projects ~/apps
+mkdir -p ~/temp ~/scripts ~/projects ~/apps
 
 mkdir -p ~/.local/share/nvim/backup
 mkdir -p ~/.config/nvim
 
 echo "cp dotfiles"
 cp .config/nvim/init.vim ~/.config/nvim/init.vim
-
 
 echo "Install Finished. Please Reboot".
 
