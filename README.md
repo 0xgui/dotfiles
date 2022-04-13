@@ -1,16 +1,8 @@
-# dotfiles
-![alt text](dotfiles.jpg)
-TODO:
-- krew
-- alias
-- install excluding DE
+# dotfiles for gnome
 
 Simple dotfiles for:
 - nvim
-- tmux
 - bashrc
-- zshrc
-- extras
 
 ---
 ## Shortcuts
@@ -22,14 +14,6 @@ Simple dotfiles for:
 - zM - close all folds
 - ctrl+v + shift I + wtv + ESC - Multi cursor write
 
-### Tmux
-* Meta - Alt
-* Ctrl B - Default  --> cb
+### TODO
 
-Change layout - cb + space
-
-Rename window - cb + ,
-
-New window - cb + c
-
-Manual resize - cb + hold ctrl and move with arrows
+- kitty
