@@ -13,12 +13,6 @@ set autoread " Set to auto read when a file is changed from the outside
 set backspace=indent,eol,start
 set cursorline " Highlight current line
 set expandtab " Expand tabs to spaces
-" set foldcolumn=0 " Column to show folds
-" set foldenable " Enable folding
-" set foldlevel=0 " Close all folds by default
-" set foldmethod=syntax " Syntax are used to specify folds
-" set foldminlines=0 " Allow folding single lines
-" set foldnestmax=5 " Set max fold nesting level
 set formatoptions=
 set formatoptions+=c " Format comments
 set formatoptions+=r " Continue comments by default
@@ -77,30 +71,26 @@ set wildmenu " Hitting TAB in command mode will show possible completions above 
 set wildmode=list:longest " Complete only until point of ambiguity
 set winminheight=0 " Allow splits to be reduced to a single line
 set wrapscan " Searches wrap around end of file
-
-
-
 set clipboard=unnamedplus
-
 
 " Plugin.
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'dikiaap/minimalist'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/vim-plug'
-Plug 'scrooloose/nerdtree'
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-syntastic/syntastic'
 Plug 'jiangmiao/auto-pairs'
-" Git
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'TovarishFin/vim-solidity'
 call plug#end()
 
 " Colors, Fonts, and Syntax.
-filetype plugin indent on
 syntax enable
 set t_Co=256
 set encoding=utf-8
@@ -120,24 +110,3 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 
-" NERDTree.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-let NERDTreeShowHidden=1
-
-" Syntastic.
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_phpcs_disable = 1
-let g:syntastic_phpmd_disable = 1
-let g:syntastic_php_checkers = ['php']
-let g:syntastic_quiet_messages = { "type": "style" }
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_auto_jump = 2
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
