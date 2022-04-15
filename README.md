@@ -1,19 +1,12 @@
-# dotfiles for gnome
+# dotfiles
+TO DO:
 
-Simple dotfiles for:
-- nvim
-- bashrc
+- rework dotfiles
+- finish neovim conf
+- most used keybinds
+- install necessary packages
+- check if silverblue is viable
+- Make the config work for both MacOs and Linux.
 
----
-## Shortcuts
-### Vim
-
-- zo - open single fold
-- zR - open all folds
-- zc - close single fold
-- zM - close all folds
-- ctrl+v + shift I + wtv + ESC - Multi cursor write
-
-### TODO
-
-- kitty
+- 
+  ...
