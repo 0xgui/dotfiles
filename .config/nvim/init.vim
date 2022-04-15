@@ -149,6 +149,9 @@ lua << EOF
 require("plugins")
 require("_lsp")
 require("_coq")
+require("_telescope")
+require("_treesitter")
+require("_lspinstaller")
 
 EOF
 
