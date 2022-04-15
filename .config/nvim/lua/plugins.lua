@@ -1,5 +1,3 @@
--- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
-
 -- lualine setup
 require('lualine').setup {
   options = {
@@ -18,18 +16,8 @@ require('lualine').setup {
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  extensions = {}
-
 }
+
 -- bufferline setup
 vim.opt.termguicolors = true
 require("bufferline").setup{
