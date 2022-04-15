@@ -19,23 +19,12 @@ lsp_installer.settings({
 -- Disable inline diagnostics text
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
--- disable virtual_text (inline) diagnostics and use floating window
-vim.diagnostic.config({
-	virtual_text = false,
-	signs = true,
-  update_in_insert = false,
-	float = {	border = "single", format = function(diagnostic)
-			return string.format(
-				"%s (%s) [%s]",
-				diagnostic.message,
-				diagnostic.source,
-				diagnostic.code or diagnostic.user_data.lsp.code
-			)
-		end, }
-})
-vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+-- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+
 -- Automatically start coq
-vim.g.coq_settings = { auto_start = 'shut-up' }
+-- vim.g.coq_settings = { auto_start = 'shut-up' }
 
 -- lualine setup
 require('lualine').setup {
@@ -46,7 +35,6 @@ require('lualine').setup {
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
     always_divide_middle = true,
-    globalstatus = false,
   },
   sections = {
     lualine_a = {'mode'},
@@ -58,7 +46,7 @@ require('lualine').setup {
   },
   inactive_sections = {
     lualine_a = {},
-    lualine_b = {'buffers'},
+    lualine_b = {},
     lualine_c = {'filename'},
     lualine_x = {'location'},
     lualine_y = {},

@@ -54,32 +54,41 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 " Plug 'dikiaap/minimalist' " Theme
 Plug 'ryanoasis/vim-devicons' " Icons
 
-Plug 'sheerun/vim-polyglot' "Language packs
 
 "LSP autocomplete
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+ Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+ Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+" Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+
+" Plug 'L3MON4D3/LuaSnip'
+" Plug 'hrsh7th/cmp-buffer'
+" Plug 'hrsh7th/cmp-nvim-lsp'
+" Plug 'hrsh7th/cmp-path'
+" Plug 'hrsh7th/nvim-cmp'
+" Plug 'hrsh7th/cmp-cmdline'
+" Plug 'saadparwaiz1/cmp_luasnip'
+
+
+ 
 
 Plug 'junegunn/vim-plug' " Auto Install vim-plug
+Plug 'sheerun/vim-polyglot' "Language packs
 Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'nvim-lualine/lualine.nvim' " Bottom status bar
-" Plug 'vim-airline/vim-airline' " Bottom bar
 Plug 'jiangmiao/auto-pairs' " Brackets Pairs
-" Plug 'neoclide/coc.nvim', {'branch': 'release'} " Auto Complete
 Plug 'preservim/nerdtree' " Tree File
 Plug 'https://github.com/tpope/vim-commentary' " gcc to comment
-" Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Highlight, indenting, folding
 Plug 'airblade/vim-gitgutter' " Show git diff sidebar
-" Plug 'TovarishFin/vim-solidity' " Solidity Syntax
 " Plug 'gelguy/wilder.nvim' " Better vim menus
-Plug 'nvim-lua/plenary.nvim' " Common functions
 Plug 'sindrets/diffview.nvim' " Show git diffview
+
+
 " Lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 
+" top bufferline
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v1.1.1' }
 
 "Telescope Requirements
@@ -88,7 +97,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 "File browsing
-Plug 'nvim-telescope/telescope-file-browser.nvim'
+" Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 call plug#end()
 
@@ -114,12 +123,16 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 
 " Keybinds
-let mapleader = " "
+" map space key as leader
+map <Space> <leader>
+
+
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fhf <cmd>Telescope find_files hidden=true<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
@@ -129,10 +142,15 @@ nnoremap <leader>bp :bprevious<CR>
 nnoremap <leader>bf :bfirst<CR>
 nnoremap <leader>bl :blast<CR>
 
-
 " will find .lua file that exist at runtime
 " should be unique
-lua require("plugins")
+lua << EOF
+
+require("plugins")
+require("_lsp")
+require("_coq")
+
+EOF
 
 
 
