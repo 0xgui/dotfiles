@@ -10,9 +10,3 @@ TO DO:
 
 - 
   ...
-
-
-
-### Branches
-
-simple: gnome compatible installation
