@@ -4,7 +4,8 @@ echo "Set Hostname"
 hostnamectl set-hostname linux
 
 echo "Enable RPMFusion"
-sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \ 
+	   https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 echo "Install Flatpak"
 sudo dnf install -y flatpak
@@ -24,13 +25,11 @@ sudo dnf -y install  \
 
 echo "Create Folders"
 mkdir -p ~/temp ~/scripts ~/repos ~/projects ~/apps
-
 mkdir -p ~/.local/share/nvim/backup
 mkdir -p ~/.config/nvim
 
-echo "cp dotfiles"
-cp .config/nvim/init.vim ~/.config/nvim/init.vim
+echo "dotfiles"
+cp .config/nvim/* ~/.config/nvim/
 
-
-echo "Install Finished. Please Reboot".
+echo "Install Finished. Please Reboot"
 
