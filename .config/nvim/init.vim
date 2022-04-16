@@ -68,6 +68,7 @@ Plug 'preservim/nerdtree' " Tree File
 Plug 'https://github.com/tpope/vim-commentary' " gcc to comment
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Highlight, indenting, folding
 Plug 'sindrets/diffview.nvim' " Show git diffview
+Plug 'lukas-reineke/lsp-format.nvim'
 "Telescope Requirements
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -107,7 +108,6 @@ nnoremap <leader>bl :blast<CR>
 " will find .lua file that exist at runtime
 " should be unique
 lua << EOF
-
 require("plugins")
 require("_lsp")
 require("_coq")
@@ -116,6 +116,7 @@ require("_treesitter")
 require("_lspinstaller")
 require("_gitsigns")
 require("_tokyo")
+require("_lsp-format")
 
 EOF
 
