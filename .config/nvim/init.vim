@@ -6,25 +6,25 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+set relativenumber
 set number " Show number of lines
 set autoindent " Copy indent from last line when starting new line
+set smartindent " auto add 1 indentend in some situations
 set autoread " Set to auto read when a file is changed from the outside
 set expandtab " Expand tabs to spaces
 set gdefault " By default add g flag to search/replace. Add g to toggle
 set hidden " When a buffer is brought to foreground, remember undo history and marks
 set history=1000 " Increase history from 20 default to 1000
 set hlsearch " Highlight searches
-set ignorecase
+set ignorecase "ignorecase when searching
 set incsearch " Highlight dynamically as pattern is typed
 set laststatus=2 " Always show status line
 set magic " Enable extended regexes
 set mouse=a " Enable mouse in all in all modes
 set noerrorbells " Disable error bells
 set foldlevelstart=99
-set noshowmode " Don't show the current mode (airline.vim takes care of us)
+set noshowmode " Don't show the current mode (lualine takes care of us)
 set nostartofline " Don't reset cursor to start of line when moving around
-set nowrap " Do not wrap lines
-set regexpengine=1 " Use the old regular expression engine (it's faster for certain language syntaxes)
 set report=0 " Show all changes
 set ruler " Show the cursor position
 set scrolloff=7 " Start scrolling seven lines before horizontal border of window
@@ -39,12 +39,19 @@ set splitbelow " New window goes below
 set splitright " New windows goes right
 set ttyfast " Send more characters at a given time
 set undofile " Persistent Undo
-set visualbell " Use visual bell instead of audible bell (annnnnoying)
+set undolevels=1000 " levels of undo
+set undoreload=1000 " max lines to save for undo
+set visualbell " Use visual bell instead of audible bell 
 set wildchar=<TAB> " Character for CLI expansion (TAB-completion)
 set wildmenu " Hitting TAB in command mode will show possible completions above command line
 set winminheight=0 " Allow splits to be reduced to a single line
 set wrapscan " Searches wrap around end of file
-set clipboard=unnamedplus
+set clipboard=unnamedplus "use os system clipboard
+set linebreak " break huge lines
+
+" split panes to right and bottom
+set splitbelow
+set splitright
 
 "---------------- Plugins-------------------
 call plug#begin('~/.local/share/nvim/plugged')
@@ -56,7 +63,7 @@ Plug 'nvim-lualine/lualine.nvim' " Bottom status bar
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
-"LSP autocomplete
+"LSP autocomplete and completion 
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 " Others
@@ -64,11 +71,11 @@ Plug 'junegunn/vim-plug' " Auto install vim-plug
 Plug 'sheerun/vim-polyglot' " Language packs
 Plug 'lewis6991/gitsigns.nvim' " Add gitsigns 
 Plug 'jiangmiao/auto-pairs' " Brackets Pairs
-Plug 'preservim/nerdtree' " Tree File
+Plug 'preservim/nerdtree' " File explorer
 Plug 'https://github.com/tpope/vim-commentary' " gcc to comment
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Highlight, indenting, folding
 Plug 'sindrets/diffview.nvim' " Show git diffview
-Plug 'lukas-reineke/lsp-format.nvim'
+Plug 'lukas-reineke/lsp-format.nvim' " Format code
 "Telescope Requirements
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -89,6 +96,10 @@ set undodir=~/.local/share/nvim/undo
 " Keybinds
 " map space key as leader
 map <Space> <leader>
+" no Highlight after search
+nnoremap <leader>, :noh<cr>
+" map CTRL+s to save
+nnoremap <C-s> :w<CR>
 
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
