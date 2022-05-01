@@ -33,7 +33,7 @@ sudo dnf -y install  \
 	hstr \
 	ripgrep \
 	gvfs-smb \
-  cifs-utils \
+  	cifs-utils \
 	zathura \
 	zathura-pdf-poppler \
 	grim swappy \
